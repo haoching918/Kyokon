@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export const Navbar = () => {
   return (
@@ -37,6 +38,7 @@ export const Navbar = () => {
 
       {/* Right Area - Actions */}
       <div className="flex items-center gap-4">
+        <ThemeToggle />
         <Button
           variant="outline"
           className="hidden sm:inline-flex rounded-full text-sm font-semibold h-10 px-5 border-gray-200 hover:bg-gray-50"
