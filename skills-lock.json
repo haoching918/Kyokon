@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "59fb01d2fad75636fbf99b505b7212490cc0e2a79a99bbf103a255c8e18904f1"
     },
+    "nextjs-supabase": {
+      "source": "eng0ai/eng0-template-skills",
+      "sourceType": "github",
+      "computedHash": "5d03d586e0b4fe744124b66ffefe87c2bef263078bbc5401580b741bf40b98ed"
+    },
     "shadcn-ui": {
       "source": "jezweb/claude-skills",
       "sourceType": "github",
