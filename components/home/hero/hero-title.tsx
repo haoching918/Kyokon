@@ -5,8 +5,8 @@ export function HeroTitle() {
         Find your next <span className="text-primary">favorite meal.</span>
       </h2>
       <p className="mb-10 text-lg text-muted-foreground font-medium max-w-2xl px-4">
-        Discover thousands of high-quality recipes for every occasion, curated
-        by professional chefs.
+        Discover thousands of high-quality recipes for every occasion, created
+        for anyone who enjoy cooking.
       </p>
     </>
   );

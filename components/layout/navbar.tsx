@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -8,7 +9,14 @@ export const Navbar = () => {
     <header className="flex h-20 items-center justify-between px-6 lg:px-12 w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-transparent">
       {/* Left Area - Logo */}
       <Link href="/" className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#111827]"></div>
+        <Image 
+          src="/logo.png" 
+          alt="Kyokon Logo" 
+          width={36} 
+          height={36} 
+          className="rounded-lg object-contain"
+          priority
+        />
         <span className="text-xl font-bold tracking-tight text-foreground">
           Kyokon
         </span>

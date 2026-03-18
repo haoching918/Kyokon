@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -10,14 +11,20 @@ export const Footer = () => {
         {/* Brand & Description */}
         <div className="flex flex-col gap-4 md:col-span-4 max-w-sm">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#111827]"></div>
+            <Image
+              src="/logo.png"
+              alt="Kyokon Logo"
+              width={36}
+              height={36}
+              className="rounded-lg object-contain"
+              priority
+            />
             <span className="text-xl font-bold tracking-tight text-foreground">
               Kyokon
             </span>
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed mt-2">
-            Inspiring home cooks with high-quality recipes since 2024. Join our
-            community and share the love of food.
+            create home recipe database for you daily life
           </p>
         </div>
 
@@ -106,7 +113,7 @@ export const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto mt-12 md:mt-16 pt-8 border-t border-gray-200 text-center text-xs font-medium text-muted-foreground">
-        © 2024 Kyokon. All rights reserved. Made with ❤️ for food lovers.
+        © 2026 Kyokon. All rights reserved. Made with ❤️ for food lovers.
       </div>
     </footer>
   );
