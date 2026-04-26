@@ -21,7 +21,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
           >
             <div className="flex-1 order-2 md:order-1">
               <div className="flex items-center gap-4 mb-4">
-                <span className="h-14 w-14 flex items-center justify-center rounded-full bg-primary text-primary-foreground font-black text-2xl shadow-md shrink-0 border-4 border-background">
+                <span className="h-10 w-10 flex items-center justify-center rounded-lg bg-linear-to-br from-primary to-slate-600 text-white font-bold text-xl shadow-lg shrink-0">
                   {index + 1}
                 </span>
                 <h4 className="text-xl font-bold">{step.title}</h4>
