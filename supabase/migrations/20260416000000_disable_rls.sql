@@ -1,0 +1,1 @@
+ALTER TABLE "public"."recipes" DISABLE ROW LEVEL SECURITY;

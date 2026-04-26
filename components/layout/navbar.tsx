@@ -37,6 +37,12 @@ export const Navbar = () => {
           My Cookbook
         </Link>
         <Link
+          href="/recipes/new"
+          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+        >
+          Create Recipe
+        </Link>
+        <Link
           href="/popular"
           className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
