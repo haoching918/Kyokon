@@ -9,11 +9,11 @@ export const Navbar = () => {
     <header className="flex h-20 items-center justify-between px-6 lg:px-12 w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-transparent">
       {/* Left Area - Logo */}
       <Link href="/" className="flex items-center gap-3">
-        <Image 
-          src="/logo.png" 
-          alt="Kyokon Logo" 
-          width={36} 
-          height={36} 
+        <Image
+          src="/logo.png"
+          alt="Kyokon Logo"
+          width={36}
+          height={36}
           className="rounded-lg object-contain"
           priority
         />
@@ -25,13 +25,13 @@ export const Navbar = () => {
       {/* Middle Area - Links */}
       <nav className="hidden md:flex items-center gap-8">
         <Link
-          href="/categories"
+          href="/"
           className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
           Categories
         </Link>
         <Link
-          href="/cookbook"
+          href="/"
           className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
           My Cookbook
@@ -43,7 +43,7 @@ export const Navbar = () => {
           Create Recipe
         </Link>
         <Link
-          href="/popular"
+          href="/"
           className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
           Popular

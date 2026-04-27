@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import type { RecipeDetail } from "@/types/recipe";
 import { ImageUploadModal } from "./image-upload-modal";
+import { Badge } from "@/components/ui/badge";
 
 export function RecipeForm({ recipe }: { recipe?: RecipeDetail }) {
   const router = useRouter();
@@ -62,15 +63,12 @@ export function RecipeForm({ recipe }: { recipe?: RecipeDetail }) {
       : [{ description: "", imageUrl: "" }],
   );
 
-  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      const val = tagInput.replace(",", "").trim();
-      if (val !== "" && !tags.includes(val)) {
-        setTags([...tags, val]);
-      }
-      setTagInput("");
+  const addTag = () => {
+    const val = tagInput.replace(",", "").trim();
+    if (val !== "" && !tags.includes(val)) {
+      setTags([...tags, val]);
     }
+    setTagInput("");
   };
   const removeTag = (tagToRemove: string) => {
     setTags(tags.filter((t) => t !== tagToRemove));
@@ -282,32 +280,36 @@ export function RecipeForm({ recipe }: { recipe?: RecipeDetail }) {
               </label>
               <div className="flex flex-wrap gap-2 items-center">
                 {tags.map((tag) => (
-                  <span
+                  <Badge
                     key={tag}
-                    className="px-4 py-1.5 bg-zinc-800/10 text-zinc-800 text-xs font-bold border border-zinc-800/20 flex items-center gap-2 rounded-xl"
+                    variant="secondary"
+                    className="px-3 py-3 rounded-xl text-xs font-bold gap-1.5 bg-zinc-800/10 text-zinc-800 border border-zinc-800/20 hover:bg-zinc-800/10"
                   >
                     {tag}
                     <button
                       type="button"
                       onClick={() => removeTag(tag)}
-                      className="focus:outline-none hover:text-red-500 transition-colors"
+                      className="ml-0.5 w-5 h-5 flex items-center justify-center rounded-md hover:bg-red-100 hover:text-red-500 transition-colors focus:outline-none"
                     >
-                      <X size={14} />
+                      <X size={12} />
                     </button>
-                  </span>
+                  </Badge>
                 ))}
-                <div className="relative group/tag">
-                  <span className="absolute inset-y-0 left-3 flex items-center text-zinc-400">
-                    <Plus size={14} />
-                  </span>
+                <div className="relative group/tag flex items-center">
                   <input
                     type="text"
                     value={tagInput}
                     onChange={(e) => setTagInput(e.target.value)}
-                    onKeyDown={handleAddTag}
-                    placeholder="Add tag & press enter"
-                    className="pl-8 pr-4 py-1.5 w-40 bg-transparent border border-dashed border-zinc-300 text-zinc-600 text-xs font-bold focus:border-zinc-800 focus:text-zinc-800 focus:ring-0 focus:outline-none transition-colors rounded-xl placeholder:text-zinc-400 placeholder:font-semibold"
+                    placeholder="Add a label..."
+                    className="pl-4 pr-10 py-2 w-44 bg-transparent border border-dashed border-zinc-300 text-zinc-600 text-xs font-bold focus:border-zinc-800 focus:text-zinc-800 focus:ring-0 focus:outline-none transition-colors rounded-xl placeholder:text-zinc-400 placeholder:font-semibold"
                   />
+                  <button
+                    type="button"
+                    onClick={addTag}
+                    className="absolute right-2 w-6 h-6 flex items-center justify-center rounded-lg bg-zinc-800 text-white hover:bg-zinc-600 transition-colors focus:outline-none"
+                  >
+                    <Plus size={14} />
+                  </button>
                 </div>
               </div>
             </div>
