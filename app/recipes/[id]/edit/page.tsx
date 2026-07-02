@@ -23,6 +23,16 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
     notFound();
   }
 
+  // Middleware only guarantees a session; ownership is checked here so a
+  // non-owner never sees a pre-filled editor (RLS would reject the save,
+  // but only after a confusing silent failure).
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user || user.id !== recipe.user_id) {
+    notFound();
+  }
+
   // Map the database snake_case to our typescript camelCase interface
   const recipeDetail: RecipeDetail = {
     id: recipe.id,
