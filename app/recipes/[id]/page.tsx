@@ -30,6 +30,13 @@ export default async function RecipeDetailPage({ params }: RecipePageProps) {
     notFound();
   }
 
+  // Owner check drives the Edit/Delete controls. Guests and non-owners get a
+  // read-only view; RLS blocks any mutation attempts regardless.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isOwner = user !== null && user.id === recipe.user_id;
+
   // Map the database snake_case to our typescript camelCase interface
   const recipeDetail: RecipeDetail = {
     id: recipe.id,
@@ -50,7 +57,7 @@ export default async function RecipeDetailPage({ params }: RecipePageProps) {
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <RecipeHeader recipe={recipeDetail} />
+      <RecipeHeader recipe={recipeDetail} isOwner={isOwner} />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
         {/* Left Side: Ingredients & Nutrition */}
