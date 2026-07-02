@@ -20,9 +20,13 @@ import { deleteRecipeAction } from "@/app/actions/recipe";
 
 interface RecipeHeaderInfoProps {
   recipe: RecipeDetail;
+  isOwner?: boolean;
 }
 
-export function RecipeHeaderInfo({ recipe }: RecipeHeaderInfoProps) {
+export function RecipeHeaderInfo({
+  recipe,
+  isOwner = false,
+}: RecipeHeaderInfoProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -87,6 +91,7 @@ export function RecipeHeaderInfo({ recipe }: RecipeHeaderInfoProps) {
         </div>
       </div>
 
+      {isOwner && (
       <div className="flex flex-wrap gap-4">
         <Button
           onClick={() => router.push(`/recipes/${recipe.id}/edit`)}
@@ -107,7 +112,9 @@ export function RecipeHeaderInfo({ recipe }: RecipeHeaderInfoProps) {
           Delete
         </Button>
       </div>
+      )}
 
+      {isOwner && (
       <AlertDialog
         open={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
@@ -135,6 +142,7 @@ export function RecipeHeaderInfo({ recipe }: RecipeHeaderInfoProps) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      )}
     </div>
   );
 }

@@ -13,9 +13,10 @@ import { RecipeHeaderInfo } from "./recipe-header-info";
 
 interface RecipeHeaderProps {
   recipe: RecipeDetail;
+  isOwner?: boolean;
 }
 
-export function RecipeHeader({ recipe }: RecipeHeaderProps) {
+export function RecipeHeader({ recipe, isOwner = false }: RecipeHeaderProps) {
   return (
     <>
       <Breadcrumb className="mb-8 overflow-x-auto whitespace-nowrap">
@@ -37,7 +38,7 @@ export function RecipeHeader({ recipe }: RecipeHeaderProps) {
           <RecipeHeaderImage recipe={recipe} />
         </div>
         <div className="lg:col-span-5 flex flex-col justify-center">
-          <RecipeHeaderInfo recipe={recipe} />
+          <RecipeHeaderInfo recipe={recipe} isOwner={isOwner} />
         </div>
       </section>
     </>
