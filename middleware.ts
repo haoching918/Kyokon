@@ -43,7 +43,13 @@ export async function middleware(request: NextRequest) {
     loginUrl.pathname = "/login";
     loginUrl.search = "";
     loginUrl.searchParams.set("next", pathname + search);
-    return NextResponse.redirect(loginUrl);
+    const redirect = NextResponse.redirect(loginUrl);
+    // Preserve any Set-Cookie emitted by getUser() (e.g. clearing a stale
+    // session) — same treatment as the auth-page redirect below.
+    response.cookies
+      .getAll()
+      .forEach((cookie) => redirect.cookies.set(cookie));
+    return redirect;
   }
 
   if (user && AUTH_PAGES.includes(pathname)) {
