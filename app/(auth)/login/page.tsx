@@ -22,7 +22,11 @@ interface LoginPageProps {
 }
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const { next = "/", error } = await searchParams;
+  const { next: rawNext = "/", error } = await searchParams;
+  // Same-origin relative paths only — LoginForm feeds this to router.push,
+  // so an unvalidated value would be an open redirect after sign-in.
+  const next =
+    rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/";
 
   const supabase = await createClient();
   const {
