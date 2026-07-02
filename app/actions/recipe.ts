@@ -23,6 +23,13 @@ export async function toggleFavoriteAction(
 ) {
   const supabase = await createClient();
 
+  // getUser() validates the JWT against the Auth server (getSession() only
+  // trusts the cookie). Layer 2 of ADR-001 — RLS remains the last line.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "Unauthorized" };
+
   const { error } = await supabase
     .from("recipes")
     .update({ is_favorite: newIsFavorite })
@@ -44,9 +51,14 @@ export async function createRecipeAction(
 ) {
   const supabase = await createClient();
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "Unauthorized" };
+
   const { data, error } = await supabase
     .from("recipes")
-    .insert([recipeData])
+    .insert([{ ...recipeData, user_id: user.id }])
     .select();
 
   if (error) {
@@ -61,6 +73,11 @@ export async function createRecipeAction(
 
 export async function updateRecipeAction(id: string, recipeData: Partial<RecipePayload>) {
   const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "Unauthorized" };
 
   const { data, error } = await supabase
     .from("recipes")
@@ -81,6 +98,11 @@ export async function updateRecipeAction(id: string, recipeData: Partial<RecipeP
 
 export async function deleteRecipeAction(id: string) {
   const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "Unauthorized" };
 
   const { error } = await supabase
     .from("recipes")
